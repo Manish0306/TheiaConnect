@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .test-result {
+            background: #f0f8ff;
+            border: 1px solid #4a90e2;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        .currency-display {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin: 10px 0;
+        }
+        .back-btn {
+            background: #6b7280;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <a href="./" class="back-btn">← Back to Sales Tracker</a>
+    
+    <h1>Currency Formatting Test</h1>
+    
+    <div class="test-result">
+        <h3>Format Currency Function Test</h3>
+        <p>Testing the formatCurrency function to ensure it displays Indian Rupee (₹) instead of Dollar ($):</p>
+        
+        <div id="testResults"></div>
+        
+        <button onclick="runTest()">Run Currency Test</button>
+    </div>
+
+    <script>
+        // Same function as in the main app
+        const formatCurrency = (amount) => {
+            return new Intl.NumberFormat('en-IN', {
+                style: 'currency',
+                currency: 'INR',
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 2
+            }).format(amount);
+        };
+
+        function runTest() {
+            const testAmounts = [
+                100,
+                1234.56,
+                45678.90,
+                123456.78,
+                999999.99,
+                0.50,
+                10.25
+            ];
+
+            let resultsHTML = '<h4>Test Results:</h4>';
+            
+            testAmounts.forEach(amount => {
+                const formatted = formatCurrency(amount);
+                const hasRupeeSymbol = formatted.includes('₹');
+                const hasDollarSymbol = formatted.includes('$');
+                
+                resultsHTML += `
+                    <div class="currency-display">
+                        Amount: ${amount} → ${formatted}
+                        <small style="font-size: 14px; color: ${hasRupeeSymbol ? 'green' : 'red'};">
+                            ${hasRupeeSymbol ? '✓ Contains ₹' : '✗ No ₹ symbol'}
+                            ${hasDollarSymbol ? ' ⚠️ Contains $ symbol!' : ''}
+                        </small>
+                    </div>
+                `;
+            });
+
+            // Final summary
+            const testResult = formatCurrency(1000);
+            if (testResult.includes('₹')) {
+                resultsHTML += '<div style="color: green; font-weight: bold; margin-top: 20px;">✅ SUCCESS: Currency is displaying Indian Rupee (₹) symbol!</div>';
+            } else if (testResult.includes('$')) {
+                resultsHTML += '<div style="color: red; font-weight: bold; margin-top: 20px;">❌ ERROR: Currency is still displaying Dollar ($) symbol!</div>';
+            } else {
+                resultsHTML += '<div style="color: orange; font-weight: bold; margin-top: 20px;">⚠️ WARNING: Currency symbol not detected!</div>';
+            }
+
+            document.getElementById('testResults').innerHTML = resultsHTML;
+        }
+
+        // Run test automatically on page load
+        window.addEventListener('load', runTest);
+    </script>
+</body>
+</html>

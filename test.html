@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Alerts</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+</head>
+<body>
+    <div class="p-8">
+        <h1 class="text-3xl font-bold mb-6">Test Alerts & Buttons</h1>
+        
+        <div class="flex gap-4 mb-6">
+            <button onclick="showSuccess('Sale added successfully!', 5000)" class="export-btn">
+                <i data-lucide="check"></i>
+                Test Success Alert
+            </button>
+            <button onclick="showError('Something went wrong!', 5000)" class="import-btn">
+                <i data-lucide="alert-triangle"></i>
+                Test Error Alert
+            </button>
+            <button onclick="showInfo('This is an info message', 5000)" class="add-btn">
+                <i data-lucide="info"></i>
+                Test Info Alert
+            </button>
+            <button onclick="showWarning('This is a warning!', 5000)" class="sample-btn">
+                <i data-lucide="alert-triangle"></i>
+                Test Warning Alert
+            </button>
+        </div>
+        
+        <div class="bg-white p-6 rounded-xl shadow-lg">
+            <h2 class="text-xl font-semibold mb-4">Button Colors Preview</h2>
+            <div class="flex gap-4 flex-wrap">
+                <button class="export-btn">Export Button</button>
+                <button class="import-btn">Import Button</button>
+                <button class="add-btn">Add Button</button>
+                <button class="sample-btn">Sample Button</button>
+                <button class="btn-primary">Primary Button</button>
+                <button class="btn-secondary">Secondary Button</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Alert -->
+    <div id="successAlert" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-emerald-500 to-teal-600 text-white px-8 py-6 rounded-2xl shadow-2xl z-50 hidden min-w-[350px] max-w-[450px]">
+        <div class="flex items-center gap-4">
+            <div class="bg-emerald-400 rounded-full p-2 shadow-lg">
+                <i data-lucide="check" class="w-5 h-5 text-white"></i>
+            </div>
+            <div class="flex-1">
+                <div class="font-bold text-lg">Success!</div>
+                <div id="successMessage" class="text-sm text-emerald-100">Operation completed successfully</div>
+            </div>
+            <button id="closeSuccessAlert" class="text-emerald-200 hover:text-white transition-colors p-1">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Error Alert -->
+    <div id="errorAlert" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-red-500 to-pink-600 text-white px-8 py-6 rounded-2xl shadow-2xl z-50 hidden min-w-[350px] max-w-[450px]">
+        <div class="flex items-center gap-4">
+            <div class="bg-red-400 rounded-full p-2 shadow-lg">
+                <i data-lucide="alert-triangle" class="w-5 h-5 text-white"></i>
+            </div>
+            <div class="flex-1">
+                <div class="font-bold text-lg">Error!</div>
+                <div id="errorMessage" class="text-sm text-red-100">Something went wrong</div>
+            </div>
+            <button id="closeErrorAlert" class="text-red-200 hover:text-white transition-colors p-1">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Info Alert -->
+    <div id="infoAlert" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-blue-500 to-indigo-600 text-white px-8 py-6 rounded-2xl shadow-2xl z-50 hidden min-w-[350px] max-w-[450px]">
+        <div class="flex items-center gap-4">
+            <div class="bg-blue-400 rounded-full p-2 shadow-lg">
+                <i data-lucide="info" class="w-5 h-5 text-white"></i>
+            </div>
+            <div class="flex-1">
+                <div class="font-bold text-lg">Info</div>
+                <div id="infoMessage" class="text-sm text-blue-100">Information message</div>
+            </div>
+            <button id="closeInfoAlert" class="text-blue-200 hover:text-white transition-colors p-1">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Warning Alert -->
+    <div id="warningAlert" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-amber-500 to-orange-600 text-white px-8 py-6 rounded-2xl shadow-2xl z-50 hidden min-w-[350px] max-w-[450px]">
+        <div class="flex items-center gap-4">
+            <div class="bg-amber-400 rounded-full p-2 shadow-lg">
+                <i data-lucide="alert-triangle" class="w-5 h-5 text-white"></i>
+            </div>
+            <div class="flex-1">
+                <div class="font-bold text-lg">Warning!</div>
+                <div id="warningMessage" class="text-sm text-amber-100">Warning message</div>
+            </div>
+            <button id="closeWarningAlert" class="text-amber-200 hover:text-white transition-colors p-1">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Initialize icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>
